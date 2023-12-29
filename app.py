@@ -52,13 +52,22 @@ def download_pdf_urls(url_list, max_pdfs_to_keep=5):
     except Exception as e:
         print(f"An error occurred: {str(e)}")
 
-    # clean up temporary files if needed
+    # Clean up temporary files if needed
     for file_path in valid_pdfs:
         if os.path.exists(file_path):
             os.remove(file_path)
 
-    # return the list of valid PDF file paths
+    # Return the list of valid PDF file paths
     return valid_pdfs
+
+    # search_results = scholarly.search_pubs("Deep Learning in Text",
+    #                                        sort_by='relevance')
+    #
+    # valid_pdfs = download_pdf_urls(search_results, max_pdfs_to_keep=5)
+    #
+    # print("Valid PDFs:")
+    # for pdf_path in valid_pdfs:
+    #     print(pdf_path)
 
 
 # Initialize the embeddings model
@@ -108,12 +117,12 @@ def get_llm_response(question, context):
 
 
 def get_k_matched_docs(question, k):
-    """Get the top k most semantically closest pages to the question"""
+    '''Get the top k most semanticlly closest pages to the question'''
     return []
 
 
 def get_context(doc_list):
-    """This function returns the doc content in LLM friendly format"""
+    '''This function returns the doc content in LLM friendly format'''
     return ''
 
 
@@ -189,7 +198,7 @@ def main():
     # Handle question querying
     if question and st.session_state.db:
         st.write(f"You asked: {question}")
-        matched_docs_list = get_k_matched_docs(question, k=5)
+        matched_docs_list = get_k_matched_docs(question, k=2)
         context = get_context(matched_docs_list)
         # st.write("Matched pages:")
         # st.write(context)
