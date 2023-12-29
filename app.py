@@ -191,6 +191,8 @@ def main():
         st.write(f"You asked: {question}")
         matched_docs_list = get_k_matched_docs(question, k=5)
         context = get_context(matched_docs_list)
+        # st.write("Matched pages:")
+        # st.write(context)
         with st.spinner('Generating answer, please wait...'):
             get_llm_response(question, context)
             with st.expander("See context chunk"):
